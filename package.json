@@ -9,6 +9,9 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@formkit/icons": "^1.6.5",
+    "@formkit/themes": "^1.6.5",
+    "@formkit/vue": "^1.6.5",
     "@handsontable/vue3": "^14.5.0",
     "chart.js": "^4.4.3",
     "flowbite": "^2.4.1",
