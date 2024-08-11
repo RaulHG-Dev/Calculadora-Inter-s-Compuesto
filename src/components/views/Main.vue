@@ -1,13 +1,17 @@
 <script setup>
     import { onMounted } from 'vue';
-    import { push } from 'notivue'
-
     import Layout from '../UI/Layout.vue';
     import Title from '../UI/Title.vue';
     import Notification from '../elements/Notification.vue';
+    import { useResultStore } from '../../stores/results';
+import router from '../../router';
+
+    const resultStore = useResultStore();
 
     onMounted(() => {
-        push.success('Something good has been pushed!')
+        if(resultStore.getResults.length > 0) {
+            router.push({ name: 'tabulacion' });
+        }
     });
 </script>
 

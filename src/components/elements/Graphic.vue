@@ -1,14 +1,104 @@
 <script setup>
-    import Title from '../UI/Title.vue';
+    import { computed, onMounted, ref, watch } from 'vue';
+    import { Line } from 'vue-chartjs';
+    import {
+        Chart as ChartJS,
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Legend
+    } from 'chart.js'
+    import { storeToRefs } from 'pinia';
+    import { useResultStore } from '../../stores/results';
+    import { useDarkModeStore } from '../../stores/darkMode';
+    import TitleUI from '../UI/Title.vue';
+
+    ChartJS.register(
+        CategoryScale,
+        LinearScale,
+        PointElement,
+        LineElement,
+        Title,
+        Tooltip,
+        Legend
+    )
+
+    const options = ref({});
+    const results = useResultStore();
+    const darkMode = useDarkModeStore();
+
+    const { results: resultados } = storeToRefs(results);
+    const { isDark } = storeToRefs(darkMode);
+
+    const data = ref({
+        label: [],
+        datasets: [
+            {
+                label: 'Interés Compuesto',
+                backgroundColor: '#00816f',
+                data: []
+            }
+        ]
+    });
+
+    options.value = {
+        responsive: true,
+        maintainAspectRatio: false
+    };
+
+    onMounted(() => {
+        updateDataChar();
+    });
+
+    watch(resultados, () => {
+        updateDataChar();
+    }, {
+        deep: true
+    });
+
+    watch(isDark, () => {
+        updateDataChar();
+    });
+
+    const hasData = computed(() => {
+        return results.results?.length > 0;
+    });
+
+    const chartData = computed(() => {
+        return data.value;
+    });
+
+    function updateDataChar() {
+        const labels = results.getLabels;
+        const values = results.getValues;
+
+        data.value = {
+            labels: labels,
+            datasets: [
+                {
+                    label: 'Interés Compuesto',
+                    backgroundColor: darkMode.verifyDarkMode ? '#00848f' : '#00816f',
+                    data: values,
+                    borderColor: darkMode.verifyDarkMode ? '#ffffff' : '#9ca3af',
+                    borderWidth: 0.5
+                }
+            ]
+        };
+    }
 </script>
 
 <template>
     <div class="py-4 w-full">
-        <Title>Gráfica de resultados</Title>
-        <!-- <div v-if="hasData">
-
+        <TitleUI>Gráfica de resultados</TitleUI>
+        <div v-if="hasData">
+            <div class="h-[41em] w-full dark:bg-gray-800">
+                <Line :data="chartData" :options="options" />
+            </div>
         </div>
-        <div v-else class="text-xl font-poppins text-gray-400"> -->
+        <div v-else class="text-xl font-poppins text-gray-400">
             <div class="flex gap-2 items-center justify-center">
                 <span>
                     <svg xmlns="http://www.w3.org/2000/svg" height="24px" viewBox="0 -960 960 960" width="24px" class="fill-gray-400 w-10 h-10">
@@ -19,6 +109,6 @@
                     <p class="text-xl font-poppins text-gray-400">No hay resultados</p>
                 </span>
             </div>
-        <!-- </div> -->
+        </div>
     </div>
 </template>

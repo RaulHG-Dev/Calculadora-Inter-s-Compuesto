@@ -12,12 +12,17 @@ const router = createRouter({
         {
             path: '/tabulacion', 
             name: 'tabulacion',
-            component: () => import('./components/views/TabulacionView.vue')
+            component: () => import('./components/views/TabulationView.vue')
         },
         {
             path: '/graficar', 
             name: 'graficar',
             component: () => import('./components/views/GraphicView.vue')
+        },
+        {
+            path: '/acerca-proyecto', 
+            name: 'acerca',
+            component: () => import('./components/views/About.vue')
         },
     ]
 });
