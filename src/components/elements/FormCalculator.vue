@@ -1,7 +1,9 @@
 <script setup>
     import { FormKit } from '@formkit/vue';
-    import Percent from '../icons/PercentIcon.vue';
     import Title from '../UI/Title.vue';
+    import { useResultStore } from '../../stores/results';
+
+    const results = useResultStore();
 </script>
 
 <template>
@@ -10,18 +12,23 @@
         <FormKit
             type="form"
             :classes="{
-                            input: 'w-full btn-green'
-                        }"
+                messages: 'p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 font-poppins text-sm'
+            }"
+            @submit="results.handleSubmit"
         >
+            <template #submit>
+                <button style="display: none;">Submit</button>
+            </template>
             <div class="mb-4">
                 <FormKit
                     type="number"
                     class="input-default"
                     label="Capital Inicial"
-                    name="capital-inicial"
+                    name="capitalInicial"
                     min="1"
                     step="0.01"
                     validation="required|number|min:1"
+                    v-model="results.form.capitalInicial"
                     :classes="{
                         label: '!font-poppins',
                         input: 'input-default !font-poppins',
@@ -38,6 +45,7 @@
                     min="1"
                     step="0.01"
                     validation="required|number|min:1|max:100"
+                    v-model="results.form.tasaInteres"
                     :classes="{
                         label: '!font-poppins',
                         input: 'input-default !font-poppins',
@@ -54,6 +62,7 @@
                     min="1"
                     step="1"
                     validation="required|number|min:1|max:100"
+                    v-model="results.form.anios"
                     :classes="{
                         label: '!font-poppins',
                         input: 'input-default !font-poppins',
@@ -62,23 +71,11 @@
                 />
             </div>
             <div class="mb-6">
-                <div class="flex">
-                    <button type="button" class="w-full btn-gray dark:btn-blue">Limpiar</button>
-                    <FormKit
-                        type="submit"
-                        label="Calcular"
-                        :classes="{
-                            input: 'w-full btn-green'
-                        }"
-                    />
+                <div class="flex flex-col md:flex-row w-full">
+                    <button type="button" class="w-full btn-gray dark:btn-blue md:!basis-1/2" @click="results.clearData">Limpiar</button>
+                    <button type="submit" class="w-full btn-green md:!basis-1/2">Calcular</button>
                 </div>
             </div>
         </FormKit>
     </div>
 </template>
-
-<style>
-/* .formkit-icon {
-  max-width: 5em;
-} */
-</style>

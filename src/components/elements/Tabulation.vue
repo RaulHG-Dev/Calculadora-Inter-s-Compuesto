@@ -1,35 +1,21 @@
 <script setup>
     import Title from '../UI/Title.vue';
-    import { computed, onMounted, readonly, ref } from 'vue';
-    import { HotTable } from '@handsontable/vue3';
+    import { computed, onMounted, readonly, ref, watch } from 'vue';
     import { registerAllModules } from 'handsontable/registry';
+    import { useResultStore } from '../../stores/results';
     import 'handsontable/dist/handsontable.full.css';
+    import TableUI from '../UI/Table.vue';
 
+    // const hotTable = ref();
+    const resultsTabulation = useResultStore();
     registerAllModules();
 
-    const settings = ref({
-        licenseKey: 'non-commercial-and-evaluation',
-        colHeaders: true,
-        rowHeaders: false,
-        colHeaders: ['Año', 'Cantidad Total'],
-        readOnly: true,
-        width: '100%',
-        height: 'auto',
-        stretchH: 'all',
-        contextMenu: false,
-        autoWrapRow: true,
-        autoWrapCol: true,
-        colWidths: ['100%', '100%'],
-        className: '!font-poppins'
+    watch(resultsTabulation.results, () => {
+        console.log('entra');
     });
 
-    const tableData = ref([
-        { name: 'John Doe', age: 30 },
-        { name: 'Jane Smith', age: 25 },
-    ]);
-
     const hasData = computed(() => {
-        return tableData.value.length > 0;
+        return resultsTabulation.results?.length > 0;
     });
 </script>
 
@@ -37,7 +23,9 @@
     <div class="py-4 w-full">
         <Title>Tabulación de Interés Compuesto</Title>
         <div v-if="hasData">
-            <hot-table :settings="settings" :data="tableData"/>
+            <!-- <hot-table :settings="settings" :data="resultsTabulation.getResults" ref="hotTable"/> -->
+            <!-- <hot-table :settings="settings" ref="hotTable"/> -->
+            <TableUI/>
         </div>
         <div v-else>
             <div class="flex gap-2 items-center justify-center">
