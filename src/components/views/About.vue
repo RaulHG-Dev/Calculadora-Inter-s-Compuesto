@@ -1,7 +1,14 @@
 <script setup>
+    import { onMounted, ref } from 'vue';
     import Card from '../UI/Card.vue';
     import Layout from '../UI/Layout.vue';
     import Title from '../UI/Title.vue';
+
+    const version = ref('');
+
+    onMounted(() => {
+        version.value = import.meta.env.VITE_VERSION_APP;
+    });
 </script>
 
 <template>
@@ -28,6 +35,10 @@
                     </svg>
                     <Title class="h6">Tailwind CSS</Title>
                 </Card>
+            </div>
+            <div class="text-center mt-5">
+                <p class="h3">Versión Proyecto</p>
+                <span class="h3 text-[#00848f]">{{ version }}</span>
             </div>
         </div>
     </Layout>
