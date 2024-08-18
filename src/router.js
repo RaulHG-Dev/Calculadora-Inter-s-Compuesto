@@ -24,6 +24,11 @@ const router = createRouter({
             name: 'acerca',
             component: () => import('./components/views/About.vue')
         },
+        {
+            path: '/:pathMatch(.*)*',
+            name: 'not-found',
+            component: () => import('./components/views/exceptions/NotFound.vue')
+        }
     ]
 });
 
