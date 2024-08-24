@@ -2,7 +2,7 @@
     import { onMounted } from 'vue';
     import DarkMode from '../icons/DarkModeIcon.vue';
     import LigthMode from '../icons/LigthModeIcon.vue';
-    import { useDarkModeStore } from '../../stores/darkMode';
+    import { useDarkModeStore } from '@/stores/darkMode';
 
     const darkMode = useDarkModeStore();
     onMounted(() => {

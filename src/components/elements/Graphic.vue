@@ -12,8 +12,8 @@
         Legend
     } from 'chart.js'
     import { storeToRefs } from 'pinia';
-    import { useResultStore } from '../../stores/results';
-    import { useDarkModeStore } from '../../stores/darkMode';
+    import { useResultStore } from '@/stores/results';
+    import { useDarkModeStore } from '@/stores/darkMode';
     import TitleUI from '../UI/Title.vue';
 
     ChartJS.register(

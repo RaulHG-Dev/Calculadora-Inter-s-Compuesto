@@ -1,6 +1,7 @@
 <script setup>
     import { Notivue, Notification, slateTheme, pastelTheme, materialTheme } from 'notivue';
-    import { useDarkModeStore } from '../../stores/darkMode';
+    import { useDarkModeStore } from '@/stores/darkMode';
+    useDarkModeStore
 
     const darkMode = useDarkModeStore();
 </script>

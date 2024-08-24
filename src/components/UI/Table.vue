@@ -1,7 +1,7 @@
 <script setup>
     import { computed } from 'vue';
     import { useResultStore } from '../../stores/results';
-    import { formatNumberCurrency } from '../../helpers/helper';
+    import { formatNumberCurrency, truncateToTwoDecimals } from '../../helpers/helper';
 
     const resultsCalc = useResultStore();
 
@@ -29,7 +29,12 @@
                         {{ result.año }}
                     </th>
                     <th class="px-6 py-4">
-                        {{ formatNumberCurrency(result.total) }}
+                        {{ 
+                        formatNumberCurrency(
+                            truncateToTwoDecimals(result.total)
+                        ) 
+                        }}
+                        <!-- {{ result.total }} -->
                     </th>
                 </tr>
             </tbody>

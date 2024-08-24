@@ -1,10 +1,12 @@
 <script setup>
     import { onMounted } from 'vue';
+    import router from '@/router';
+
     import Layout from '../UI/Layout.vue';
     import Title from '../UI/Title.vue';
     import Notification from '../elements/Notification.vue';
-    import { useResultStore } from '../../stores/results';
-import router from '../../router';
+
+    import { useResultStore } from '@/stores/results';
 
     const resultStore = useResultStore();
 
