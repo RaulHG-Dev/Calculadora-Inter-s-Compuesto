@@ -9,12 +9,10 @@
  * 2 fraction digits.
  */
 export const formatNumberCurrency = (number = 0) => {
-    return Intl.NumberFormat('es-MX',{
-        style:'currency',
-        currency:'MXN',
-        minimumFractionDigits:0,
-        maximumFractionDigits:2
-    }).format(number) ;
+    return Number(number).toLocaleString('es-MX', {
+        style: 'currency',
+        currency: 'MXN'
+    });
 }
 
 /**
@@ -27,4 +25,8 @@ export const formatNumberCurrency = (number = 0) => {
  */
 export const truncateToTwoDecimals = (num) => {
     return Math.floor(num * 100) / 100;
+}
+
+export const localeStringToNumber = (num) => {
+    return parseFloat(num.replace(/\$|\,/g,''));
 }

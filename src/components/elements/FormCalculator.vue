@@ -1,9 +1,27 @@
 <script setup>
+    import { reactive } from 'vue';
+    import { vMaska } from 'maska/vue';
     import { FormKit } from '@formkit/vue';
-    import Title from '../UI/Title.vue';
-    import { useResultStore } from '../../stores/results';
+    import { useResultStore } from '@/stores/results';
+    import { localeStringToNumber } from '@/helpers/helper';
+    import Title from '@/components/UI/Title.vue';
+
 
     const results = useResultStore();
+    const optionsMask = reactive({
+        number: {
+            locale: 'es-MX',
+            fraction: 2,
+            unsigned: true
+        },
+        postProcess: (val) => val ? `$${val}` : ''
+    });
+
+    const valueNumber = function ({ value }) {
+        return new Promise((resolve) => {
+            resolve(localeStringToNumber(value) > 0);
+        });
+    }
 </script>
 
 <template>
@@ -21,14 +39,18 @@
             </template>
             <div class="mb-4">
                 <FormKit
-                    type="number"
+                    type="text"
                     class="input-default"
                     label="Capital Inicial"
                     name="capitalInicial"
-                    min="1"
-                    step="0.01"
-                    validation="required|number|min:1"
+                    validation="required|valueNumber"
+                    validation-visibility="live"
+                    :validation-rules="{valueNumber}"
+                    :validation-messages="{
+                        valueNumber: 'Capital inicial debe ser mayor a cero.'
+                    }"
                     v-model="results.form.capitalInicial"
+                    v-maska="optionsMask"
                     :classes="{
                         label: '!font-poppins',
                         input: 'input-default !font-poppins',

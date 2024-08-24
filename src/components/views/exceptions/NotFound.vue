@@ -1,6 +1,6 @@
 <script setup>
-    import LayoutExceptions from '../../UI/LayoutExceptions.vue';
-    import Title from '../../UI/Title.vue';
+    import LayoutExceptions from '@/components/UI/LayoutExceptions.vue';
+    import Title from '@/components/UI/Title.vue';
 </script>
 
 <template>

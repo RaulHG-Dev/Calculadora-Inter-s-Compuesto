@@ -1,6 +1,6 @@
 import { computed, reactive, ref, onMounted, watch } from "vue";
 import { defineStore } from "pinia";
-import { truncateToTwoDecimals } from "../helpers/helper";
+import { localeStringToNumber, truncateToTwoDecimals } from "../helpers/helper";
 import { push } from "notivue";
 
 import router from "../router";
@@ -34,7 +34,15 @@ export const useResultStore = defineStore('results', () => {
     }
 
     function handleSubmit(data) {
-        results.value = calculateYearByYear(Number(data.capitalInicial), Number(data.anios), Number(data.interes));
+        results.value = calculateYearByYear(
+            Number(
+                localeStringToNumber(
+                    data.capitalInicial
+                )
+            ), 
+            Number(data.anios), 
+            Number(data.interes)
+        );
         router.push({ name: 'tabulacion' });
     }
 

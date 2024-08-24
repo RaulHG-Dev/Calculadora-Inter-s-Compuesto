@@ -2,7 +2,7 @@
     import Title from '../UI/Title.vue';
     import { computed, onMounted, readonly, ref, watch } from 'vue';
     import { registerAllModules } from 'handsontable/registry';
-    import { useResultStore } from '../../stores/results';
+    import { useResultStore } from '@/stores/results';
     import 'handsontable/dist/handsontable.full.css';
     import TableUI from '../UI/Table.vue';
 
