@@ -1,13 +1,14 @@
 <script setup>
-    import { reactive } from 'vue';
+    import { reactive, ref } from 'vue';
     import { vMaska } from 'maska/vue';
-    import { FormKit } from '@formkit/vue';
+    import { FormKit, reset } from '@formkit/vue';
     import { useResultStore } from '@/stores/results';
     import { localeStringToNumber } from '@/helpers/helper';
     import Title from '@/components/UI/Title.vue';
 
 
     const results = useResultStore();
+    
     const optionsMask = reactive({
         number: {
             locale: 'es-MX',
@@ -22,6 +23,11 @@
             resolve(localeStringToNumber(value) > 0);
         });
     }
+
+    const clearForm = function () {
+        reset('formCalculator');
+        results.clearData();
+    }
 </script>
 
 <template>
@@ -29,6 +35,7 @@
         <Title class="h5">Ingrese información</Title>
         <FormKit
             type="form"
+            id="formCalculator"
             :classes="{
                 messages: 'p-4 mb-4 text-red-800 border border-red-300 rounded-lg bg-red-50 dark:bg-gray-800 dark:text-red-400 dark:border-red-800 font-poppins text-sm'
             }"
@@ -44,7 +51,6 @@
                     label="Capital Inicial"
                     name="capitalInicial"
                     validation="required|valueNumber"
-                    validation-visibility="live"
                     :validation-rules="{valueNumber}"
                     :validation-messages="{
                         valueNumber: 'Capital inicial debe ser mayor a cero.'
@@ -94,7 +100,7 @@
             </div>
             <div class="mb-6">
                 <div class="flex flex-col md:flex-row w-full">
-                    <button type="button" class="w-full btn-gray dark:btn-blue md:!basis-1/2" @click="results.clearData">Limpiar</button>
+                    <button type="button" class="w-full btn-gray dark:btn-blue md:!basis-1/2" @click="clearForm">Limpiar</button>
                     <button type="submit" class="w-full btn-green md:!basis-1/2">Calcular</button>
                 </div>
             </div>

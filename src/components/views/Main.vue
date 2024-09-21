@@ -22,7 +22,7 @@
     <Layout>
         <div class="flex flex-col items-center w-full justify-center opacity-45 py-4">
             <Title class="h4 md:h3">Ingresa información para empezar...</Title>
-            <img src="/img/main_icon.svg" alt="Inicio imagen" class="w-[60%]">
+            <img src="/img/main_icon.webp" alt="Inicio imagen" loading="lazy" width="60%">
         </div>
     </Layout>
 </template>
