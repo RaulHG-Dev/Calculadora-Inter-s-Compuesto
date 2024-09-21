@@ -64,18 +64,22 @@ export const useResultStore = defineStore('results', () => {
 
     const getLabels = computed(() => {
         const labels = [];
-        for (const element of results.value) {
-            labels.push(element.año);
+        if(results.value.length > 0) {
+            for (const element of results.value) {
+                labels.push(element.año);
+            }
         }
         return labels;
     });
 
     const getValues = computed(() => { 
         const values = [];
-        for (const element of results.value) {
-            values.push(
-                truncateToTwoDecimals(element.total)
-            );
+        if(results.value.length > 0) {
+            for (const element of results.value) {
+                values.push(
+                    truncateToTwoDecimals(element.total)
+                );
+            }
         }
         return values;
     });

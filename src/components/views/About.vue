@@ -38,7 +38,7 @@
             </div>
             <div class="text-center mt-5">
                 <p class="h3">Versión Proyecto</p>
-                <span class="h3 text-[#00848f]">{{ version }}</span>
+                <span class="h3 text-[#00848f]">v1.0.4</span>
             </div>
         </div>
     </Layout>
