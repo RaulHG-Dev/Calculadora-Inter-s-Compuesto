@@ -4,6 +4,8 @@ import { localeStringToNumber, truncateToTwoDecimals } from "../helpers/helper";
 import { push } from "notivue";
 
 import router from "../router";
+import axios from "axios";
+import APIServices from "@/services/APIServices";
 
 export const useResultStore = defineStore('results', () => {
     const results = ref([]);
@@ -34,7 +36,7 @@ export const useResultStore = defineStore('results', () => {
     }
 
     function handleSubmit(data) {
-        results.value = calculateYearByYear(
+        const response = calculateYearByYear(
             Number(
                 localeStringToNumber(
                     data.capitalInicial
@@ -43,23 +45,37 @@ export const useResultStore = defineStore('results', () => {
             Number(data.anios), 
             Number(data.interes)
         );
-        router.push({ name: 'tabulacion' });
+
+        response.then(response => {
+            const {data: {data:info, success}} = response
+            const result = [];
+
+            if (success) {
+                info.forEach(dataYear => {
+                    result.push({
+                        'año': `Año ${dataYear.year}`,
+                        'total': dataYear.capital
+                    });
+                });
+                
+                results.value = result
+                router.push({ name: 'tabulacion' });
+            } else {
+                push.error('¡Ocurrió un problema al realizar cálculo!');
+            }
+        }).catch(error => {
+            console.log(error)
+            push.error('¡Ocurrió un problema al realizar cálculo!');
+        })
+        
     }
 
     const getResults = computed(() => {
         return results.value;
     });
 
-    function calculateYearByYear(initQuantity, year, interest) {
-        let result = [];
-        for (let yearIndex = 1; yearIndex <= year; yearIndex++) {
-            result.push({
-                'año': `Año ${yearIndex}`,
-                'total': initQuantity*((1+(interest/100))**yearIndex)
-            });
-        }
-
-        return result;
+    async function calculateYearByYear(initQuantity, year, interest) {
+        return await APIServices.getByYear(initQuantity, year, interest)
     }
 
     const getLabels = computed(() => {

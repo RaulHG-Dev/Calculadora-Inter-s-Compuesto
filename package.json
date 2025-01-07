@@ -13,6 +13,7 @@
     "@formkit/themes": "^1.6.5",
     "@formkit/vue": "^1.6.5",
     "@handsontable/vue3": "^14.5.0",
+    "axios": "^1.7.9",
     "chart.js": "^4.4.3",
     "flowbite": "^2.4.1",
     "maska": "^3.0.1",
