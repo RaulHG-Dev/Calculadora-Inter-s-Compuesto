@@ -1,8 +1,9 @@
 <script setup>
     import { onMounted } from 'vue';
-    import Graphic from '../elements/Graphic.vue';
-    import Layout from '../UI/Layout.vue';
-    import Tabs from '../UI/Tabs.vue';
+    import Graphic from '@/components/elements/Graphic.vue';
+    import Layout from '@/components/UI/Layout.vue';
+    import Tabs from '@/components/UI/Tabs.vue';
+
     import { useTabsStore } from '@/stores/tabs';
 
     const tabs = useTabsStore();

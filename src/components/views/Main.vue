@@ -2,9 +2,9 @@
     import { onMounted } from 'vue';
     import router from '@/router';
 
-    import Layout from '../UI/Layout.vue';
-    import Title from '../UI/Title.vue';
-    import Notification from '../elements/Notification.vue';
+    import Layout from '@/components/UI/Layout.vue';
+    import Title from '@/components/UI/Title.vue';
+    import Notification from '@/components/elements/Notification.vue';
 
     import { useResultStore } from '@/stores/results';
 

@@ -1,7 +1,7 @@
 <script setup>
     import { computed } from 'vue';
-    import { useResultStore } from '../../stores/results';
-    import { formatNumberCurrency, truncateToTwoDecimals } from '../../helpers/helper';
+    import { useResultStore } from '@/stores/results';
+    import { formatNumberCurrency, truncateToTwoDecimals } from '@/helpers/helper';
 
     const resultsCalc = useResultStore();
 

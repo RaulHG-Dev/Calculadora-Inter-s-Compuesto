@@ -1,6 +1,6 @@
 <script setup>
     import { RouterLink } from 'vue-router';
-    import Title from '../UI/Title.vue';
+    import Title from '@/components/UI/Title.vue';
 
     const props = defineProps(['title']);
 </script>

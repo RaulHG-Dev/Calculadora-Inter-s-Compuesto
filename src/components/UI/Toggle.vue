@@ -1,7 +1,7 @@
 <script setup>
     import { onMounted } from 'vue';
-    import DarkMode from '../icons/DarkModeIcon.vue';
-    import LigthMode from '../icons/LigthModeIcon.vue';
+    import DarkMode from '@/components/icons/DarkModeIcon.vue';
+    import LigthMode from '@/components/icons/LigthModeIcon.vue';
     import { useDarkModeStore } from '@/stores/darkMode';
 
     const darkMode = useDarkModeStore();

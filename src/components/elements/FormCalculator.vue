@@ -4,8 +4,6 @@
     import { FormKit, reset } from '@formkit/vue';
     import { useResultStore } from '@/stores/results';
     import { localeStringToNumber } from '@/helpers/helper';
-    import Title from '@/components/UI/Title.vue';
-
 
     const results = useResultStore();
     

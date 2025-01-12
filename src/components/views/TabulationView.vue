@@ -1,9 +1,9 @@
 <script setup>
   	import { onMounted } from 'vue';
 	
-	import Tabulation from '../elements/Tabulation.vue';
-  	import Layout from '../UI/Layout.vue';
-  	import Tabs from '../UI/Tabs.vue';
+	import Tabulation from '@/components/elements/Tabulation.vue';
+	import Layout from '@/components/UI/Layout.vue';
+	import Tabs from '@/components/UI/Tabs.vue';
 
 	import { useTabsStore } from '@/stores/tabs';
 

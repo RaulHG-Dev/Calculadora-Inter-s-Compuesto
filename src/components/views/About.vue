@@ -1,8 +1,8 @@
 <script setup>
     import { onMounted, ref } from 'vue';
-    import Card from '../UI/Card.vue';
-    import Layout from '../UI/Layout.vue';
-    import Title from '../UI/Title.vue';
+    import Card from '@/components/UI/Card.vue';
+    import Layout from '@/components/UI/Layout.vue';
+    import Title from '@/components/UI/Title.vue';
 
     const version = ref('');
 

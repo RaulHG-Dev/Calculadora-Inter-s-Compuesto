@@ -1,7 +1,7 @@
 <script setup>
     import { onMounted } from 'vue';
-    import FormCalculator from '../elements/FormCalculator.vue';
-    import HeaderUI from '../UI/Header.vue';
+    import FormCalculator from '@/components/elements/FormCalculator.vue';
+    import HeaderUI from '@/components/UI/Header.vue';
     import Loader from '@/components/UI/Loader.vue';
 
     onMounted(() => {

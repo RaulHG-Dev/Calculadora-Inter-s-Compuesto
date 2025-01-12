@@ -1,8 +1,8 @@
 <script setup>
     import { RouterLink } from 'vue-router';
-    import Monitoring from '../icons/MonitoringIcon.vue';
-    import TableIcon from '../icons/TableIcon.vue';
-    import { useTabsStore } from '../../stores/tabs';
+    import Monitoring from '@/components/icons/MonitoringIcon.vue';
+    import TableIcon from '@/components/icons/TableIcon.vue';
+    import { useTabsStore } from '@/stores/tabs';
 
     const tabs = useTabsStore();
 </script>

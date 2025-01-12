@@ -14,7 +14,7 @@
     import { storeToRefs } from 'pinia';
     import { useResultStore } from '@/stores/results';
     import { useDarkModeStore } from '@/stores/darkMode';
-    import TitleUI from '../UI/Title.vue';
+    import TitleUI from '@/components/UI/Title.vue';
 
     ChartJS.register(
         CategoryScale,

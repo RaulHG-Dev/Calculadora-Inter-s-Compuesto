@@ -1,8 +1,8 @@
 <script setup>
   import { RouterLink } from 'vue-router';
-  import IconCalculator from '../icons/CalculatorIcon.vue';
-  import GitHubIcon from '../icons/GitHubIcon.vue';
-  import ToggleMode from './Toggle.vue';
+  import IconCalculator from '@/components/icons/CalculatorIcon.vue';
+  import GitHubIcon from '@/components/icons/GitHubIcon.vue';
+  import ToggleMode from '@/components/UI/Toggle.vue';
 </script>
 
 <template>
