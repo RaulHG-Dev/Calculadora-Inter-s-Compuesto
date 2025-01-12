@@ -32,7 +32,11 @@
 
 <template>
     <div class="font-poppins">
-        <Title class="h5">Ingrese información</Title>
+        <section class="mb-6">
+            <p class="text-base dark:text-white">
+                Calcula el crecimiento de tu inversión con interés compuesto.
+            </p>
+        </section>
         <FormKit
             type="form"
             id="formCalculator"
@@ -68,7 +72,7 @@
                 <FormKit
                     type="number"
                     class="input-default"
-                    label="Tasa de Interés (%)"
+                    label="Tasa de Interés Anual (%)"
                     name="interes"
                     min="1"
                     step="0.01"
@@ -85,7 +89,7 @@
                 <FormKit
                     type="number"
                     class="input-default"
-                    label="Años"
+                    label="Número de Años"
                     name="anios"
                     min="1"
                     step="1"
