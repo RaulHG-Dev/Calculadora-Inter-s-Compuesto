@@ -29,6 +29,7 @@
     const options = ref({});
     const results = useResultStore();
     const darkMode = useDarkModeStore();
+    const optionsApexCharts = ref({});
 
     const { results: resultados } = storeToRefs(results);
     const { isDark } = storeToRefs(darkMode);
@@ -95,6 +96,7 @@
         <TitleUI>Gráfica de resultados</TitleUI>
         <div v-if="hasData">
             <div class="h-[41em] w-full dark:bg-gray-800">
+                <!-- <apexchart type="line" :options="optionsApexCharts" :series="chartData.datasets" /> -->
                 <Line :data="chartData" :options="options" />
             </div>
         </div>
