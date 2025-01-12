@@ -29,7 +29,6 @@
     const options = ref({});
     const results = useResultStore();
     const darkMode = useDarkModeStore();
-    const optionsApexCharts = ref({});
 
     const { results: resultados } = storeToRefs(results);
     const { isDark } = storeToRefs(darkMode);
@@ -38,7 +37,7 @@
         label: [],
         datasets: [
             {
-                label: 'Interés Compuesto',
+                label: 'Interés Acumulado',
                 backgroundColor: '#00816f',
                 data: []
             }
@@ -80,7 +79,7 @@
             labels: labels,
             datasets: [
                 {
-                    label: 'Interés Compuesto',
+                    label: 'Interés Acumulado',
                     backgroundColor: darkMode.verifyDarkMode ? '#00848f' : '#00816f',
                     data: values,
                     borderColor: darkMode.verifyDarkMode ? '#ffffff' : '#9ca3af',

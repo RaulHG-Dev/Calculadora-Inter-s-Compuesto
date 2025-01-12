@@ -4,8 +4,8 @@ import { localeStringToNumber, truncateToTwoDecimals } from "../helpers/helper";
 import { push } from "notivue";
 
 import router from "../router";
-import axios from "axios";
 import APIServices from "@/services/APIServices";
+import { useLoaderStatusStore } from "./loaderStatus";
 
 export const useResultStore = defineStore('results', () => {
     const results = ref([]);
@@ -14,6 +14,8 @@ export const useResultStore = defineStore('results', () => {
         tasaInteres: '',
         anios: ''
     });
+
+    const loaderMode = useLoaderStatusStore();
     
     onMounted(() => {
         results.value = JSON.parse(localStorage.getItem('results')) ?? [];
@@ -50,6 +52,7 @@ export const useResultStore = defineStore('results', () => {
             const {data: {data:info, success}} = response
             const result = [];
 
+            loaderMode.isLoading = false;
             if (success) {
                 info.forEach(dataYear => {
                     result.push({
@@ -75,6 +78,7 @@ export const useResultStore = defineStore('results', () => {
     });
 
     async function calculateYearByYear(initQuantity, year, interest) {
+        loaderMode.isLoading = true;
         return await APIServices.getByYear(initQuantity, year, interest)
     }
 
